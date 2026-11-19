@@ -1,19 +1,19 @@
 # Citation Format Switcher — Multi-Citation Format Switching
 
-Quick-reference for switching between 5 citation formats. Used by `citation_compliance_agent` and `formatter_agent`.
+Quick-reference for switching between 7 citation formats (APA 7th, Chicago notes-bibliography, Chicago author-date, MLA 9th, IEEE, Vancouver, and ASCE author-date in this civil/structural fork). Used by `citation_compliance_agent` and `formatter_agent`.
 
 ## Format Comparison Matrix
 
 ### In-Text Citation Patterns
 
-| Scenario | APA 7th | Chicago (Notes) | Chicago (Author-Date) | MLA 9th | IEEE | Vancouver |
-|----------|---------|-----------------|----------------------|---------|------|-----------|
-| Single author | (Smith, 2024) | ¹ (footnote) | (Smith 2024) | (Smith 45) | [1] | ¹ (superscript) |
-| Two authors | (Smith & Jones, 2024) | ¹ | (Smith and Jones 2024) | (Smith and Jones 45) | [1] | ¹ |
-| 3+ authors | (Smith et al., 2024) | ¹ | (Smith et al. 2024) | (Smith et al. 45) | [1] | ¹ |
-| Direct quote | (Smith, 2024, p. 45) | ¹ | (Smith 2024, 45) | (Smith 45) | [1, p. 45] | ¹⁽ᵖ⁴⁵⁾ |
-| Multiple works | (Chen, 2023; Smith, 2024) | ¹ ² | (Chen 2023; Smith 2024) | (Chen 12; Smith 45) | [1], [2] | ¹˒² |
-| Order | Alphabetical | Order of appearance | Alphabetical | Alphabetical | Order of appearance | Order of appearance |
+| Scenario | APA 7th | Chicago (Notes) | Chicago (Author-Date) | MLA 9th | IEEE | Vancouver | ASCE |
+|----------|---------|-----------------|----------------------|---------|------|-----------|------|
+| Single author | (Smith, 2024) | ¹ (footnote) | (Smith 2024) | (Smith 45) | [1] | ¹ (superscript) | (Smith 2024) |
+| Two authors | (Smith & Jones, 2024) | ¹ | (Smith and Jones 2024) | (Smith and Jones 45) | [1] | ¹ | (Smith and Jones 2024) |
+| 3+ authors | (Smith et al., 2024) | ¹ | (Smith et al. 2024) | (Smith et al. 45) | [1] | ¹ | (Smith et al. 2024) |
+| Direct quote | (Smith, 2024, p. 45) | ¹ | (Smith 2024, 45) | (Smith 45) | [1, p. 45] | ¹⁽ᵖ⁴⁵⁾ | (Smith 2024, 45) |
+| Multiple works | (Chen, 2023; Smith, 2024) | ¹ ² | (Chen 2023; Smith 2024) | (Chen 12; Smith 45) | [1], [2] | ¹˒² | (Chen 2023; Smith 2024) |
+| Order | Alphabetical | Order of appearance | Alphabetical | Alphabetical | Order of appearance | Order of appearance | Alphabetical |
 
 ### Reference List Naming
 
@@ -25,6 +25,7 @@ Quick-reference for switching between 5 citation formats. Used by `citation_comp
 | MLA 9th | Works Cited | Alphabetical |
 | IEEE | References | Order of appearance |
 | Vancouver | References | Order of appearance |
+| ASCE | References | Alphabetical by first author, then year |
 
 ## Format Details
 
@@ -114,6 +115,25 @@ Smith, John A., and Betty C. Jones. "Article Title in Title Case."
 ```
 
 **Key rules**: Numbered [N], initials before surname, abbreviated month, "doi:" prefix (not URL).
+
+---
+
+### ASCE (author-date)
+**Discipline**: Civil, structural and earthquake engineering (ASCE journals; also accepted by many Elsevier, Wiley and Springer structural journals, so check the target journal's guide)
+
+**In-text**: (Smith 2024), (Smith and Jones 2024), (Smith et al. 2024) for three or more authors. No comma between author and year. Codes are cited by corporate author: (CEN 2004), (AFAD 2018), (ASCE 2022).
+
+**Reference**:
+```
+Smith, J. A., B. C. Jones, and D. Lee. 2024. "Cyclic behavior of steel beam-to-column
+    connections with reduced beam sections." J. Struct. Eng. 150 (3): 04024001.
+    https://doi.org/10.1061/xxxx.
+CEN (European Committee for Standardization). 2004. Eurocode 8: Design of structures
+    for earthquake resistance—Part 1: General rules, seismic actions and rules for
+    buildings. EN 1998-1. Brussels: CEN.
+```
+
+**Key rules**: list every author in the reference list, with only the first author inverted (Surname, Initials). The year comes right after the authors. The article title is in quotes and sentence case. The journal name is abbreviated (ISO 4 / ASCE list) and in italics. Give the volume and issue as "150 (3)", then the article number or page range. Include the DOI as a URL. Cite codes by designation and edition (see `structural_codes_and_units.md`). Check the details against the current ASCE Author Guide, which takes precedence.
 
 ---
 

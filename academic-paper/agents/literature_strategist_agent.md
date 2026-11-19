@@ -68,7 +68,7 @@ Graceful-fallback cases (none block — INVARIANT 4):
 - **(a) Row absent** → neutral `unknown_user_defined`. **In `full` mode, emit `[NO-PROFILE-NEUTRAL]`** so the neutral default is visible. (Paths that leave the row absent: `plan → full` and true mid-entry, where intake never set it. Resume-from-checkpoint carries whatever the prior intake wrote — present ⇒ that profile applies with no advisory; absent ⇒ neutral + advisory. A `deep-research → academic-paper` handoff is NOT absent — intake set the row.)
 - **(b) Row is *exactly* `unknown_user_defined`** (no `(requested: …)` suffix) → neutral. **No `[NO-PROFILE-NEUTRAL]`** — the scholar actively chose/accepted neutral at intake; that tag is only for the absent-row case.
 - **(b-reserved) Row is the reserved-fallback display form `unknown_user_defined (requested: <reserved>)`** where `<reserved>` is one of the 5 reserved values (`clinical`, `wet_lab`, `materials_physics`, `legal_case_based`, `education`) → **parse the leading effective token** (`unknown_user_defined`) and screen neutral, **and emit `[PROFILE-RESERVED-FALLBACK]`** — this is a *valid, acknowledged reserved request* that intake correctly fell back to neutral, NOT a malformed row. Do **not** emit `[PROFILE-UNRESOLVED]` here. Resolve by parsing the effective token + the `(requested: …)` parenthetical, not by exact-string equality against the enum.
-- **(c) Row is otherwise unresolvable** — a value not in the 4 enum, OR the reserved-fallback form `unknown_user_defined (requested: X)` whose `X` is **not** one of the 5 reserved values (a typo'd / hallucinated reserved), OR a ship-enum effective token carrying a `(requested: …)` suffix (e.g. `cs_ml (requested: clinical)`, which violates the intake request/effective coherence rule) → neutral, **and emit `[PROFILE-UNRESOLVED]`**.
+- **(c) Row is otherwise unresolvable** — a value not in the 5 enum, OR the reserved-fallback form `unknown_user_defined (requested: X)` whose `X` is **not** one of the 5 reserved values (a typo'd / hallucinated reserved), OR a ship-enum effective token carrying a `(requested: …)` suffix (e.g. `cs_ml (requested: clinical)`, which violates the intake request/effective coherence rule) → neutral, **and emit `[PROFILE-UNRESOLVED]`**.
 - **(d) Discipline mismatch** (the profile's implied discipline ≠ PCR `Discipline`) → proceed with BOTH signals in their own lanes, **emit `[PROFILE-DISCIPLINE-MISMATCH]`**. This is a warning, not a fallback — admissibility still uses the profile; `Discipline` still drives database selection. Nothing is blocked.
 
 **Profile → implied-discipline map** (so "implies a discipline" is deterministic, a string-category comparison — not inference):
@@ -77,6 +77,7 @@ Graceful-fallback cases (none block — INVARIANT 4):
 |---|---|
 | `cs_ml` | CS / Engineering / Technology |
 | `humanities_interpretive` | Humanities |
+| `structural_engineering` | Civil / Structural / Earthquake Engineering |
 | `general_social_science` | Social Science **or** Policy (matches either) |
 | `unknown_user_defined` | none — neutral default never triggers a mismatch check |
 
@@ -89,7 +90,7 @@ The mismatch advisory fires only when PCR `Discipline` falls **outside** the pro
 The three **universal gates are never loosened by any profile**: a source must always pass the **relevance** check (abstract addresses the RQ), the **methodology** check (no fatal design flaw), and the **predatory**/fabrication check, regardless of which profile is active. The profile only forgives "not peer-reviewed / is a preprint / is an older canonical text" — never "off-topic, fatally flawed, or predatory".
 
 ```
-profile = resolve_from_PCR_row()    # 4 enum values; absent/non-enum -> unknown_user_defined (+advisory on non-enum)
+profile = resolve_from_PCR_row()    # 5 enum values; absent/non-enum -> unknown_user_defined (+advisory on non-enum)
 
 # Universal gates apply to EVERY source regardless of profile — the profile can never bypass them:
 UNIVERSAL_GATES        = [relevance_to_RQ, methodology_not_fatally_flawed, not_predatory_or_fabricated]
@@ -113,6 +114,7 @@ def admit(source):
 |-----------|-------------------|
 | Education | ERIC, Education Source, JSTOR |
 | CS/Engineering | IEEE Xplore, ACM DL, Scopus |
+| Civil/Structural/Earthquake Engineering | Scopus, Web of Science, ASCE Library, ScienceDirect, Wiley Online Library, ICE Virtual Library, *fib*/ACI/AISC digital libraries; grey: PEER, FEMA, NIST, JRC, EERI/GEER reconnaissance; Turkey: ULAKBİM TR Dizin, YÖK Ulusal Tez Merkezi, DergiPark; codes: CEN/TSE catalogues, AFAD (TBDY 2018) |
 | Medicine | PubMed, MEDLINE, Cochrane |
 | Social Science | SSRN, Web of Science, Scopus |
 | Humanities | JSTOR, Project MUSE, MLA International Bibliography |
@@ -135,7 +137,7 @@ def admit(source):
 | Language | Per config (EN, zh-TW, or both) | Other languages unless key source |
 | Relevance | Directly addresses RQ | Tangentially related |
 
-Under a non-neutral domain evidence profile, the profile's standard evidence types are added to the includable set before screening — the peer-reviewed filter (Step 3 `Filters:` line and the Step 4 Publication type / Date range rows) relaxes to peer-reviewed-equivalent for `cs_ml`; the year-range relaxes for `humanities_interpretive` canonical texts. Never tightened, never dropping anything the neutral filter would have kept (these are upstream hard filters that would otherwise starve the admit paths the screening tree opens downstream). Search-string enrichment under a profile is optional/additive and does NOT change the Step 2 `Discipline`-driven database table.
+Under a non-neutral domain evidence profile, the profile's standard evidence types are added to the includable set before screening — the peer-reviewed filter (Step 3 `Filters:` line and the Step 4 Publication type / Date range rows) relaxes to peer-reviewed-equivalent for `cs_ml` and `structural_engineering` (proceedings, codes, agency technical reports, datasets); the year-range relaxes for `humanities_interpretive` canonical texts. Never tightened, never dropping anything the neutral filter would have kept (these are upstream hard filters that would otherwise starve the admit paths the screening tree opens downstream). Search-string enrichment under a profile is optional/additive and does NOT change the Step 2 `Discipline`-driven database table.
 
 ## Source Screening Protocol
 
@@ -505,7 +507,8 @@ Receive a candidate source ->
 │   ├── No -> Is it gray literature (government report/white paper) and directly relevant to RQ?
 │   │   ├── Yes -> Include (tag as gray literature)
 │   │   └── No -> Is it admissible under the active domain evidence profile?
-│   │       (cs_ml: archival preprint / proceedings; humanities_interpretive: primary / archival / canonical source)
+│   │       (cs_ml: archival preprint / proceedings; humanities_interpretive: primary / archival / canonical source;
+│   │        structural_engineering: proceedings / design code / agency technical report / test or ground-motion dataset / reconnaissance report)
 │   │       ├── Yes -> tag by evidence type, then CONTINUE to the relevance + methodology nodes below
 │   │       │          (profile admit path, loosen-only — it does NOT short-circuit to Include)
 │   │       └── No -> Exclude

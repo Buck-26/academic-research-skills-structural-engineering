@@ -261,13 +261,14 @@ The formatter agent can convert citations between any two supported formats at a
 
 ### Supported Conversions
 
-| From \ To | APA 7 | Chicago | MLA 9 | IEEE | Vancouver |
-|-----------|-------|---------|-------|------|-----------|
-| **APA 7** | — | Yes | Yes | Yes | Yes |
-| **Chicago** | Yes | — | Yes | Yes | Yes |
-| **MLA 9** | Yes | Yes | — | Yes | Yes |
-| **IEEE** | Yes | Yes | Yes | — | Yes |
-| **Vancouver** | Yes | Yes | Yes | Yes | — |
+| From \ To | APA 7 | Chicago | MLA 9 | IEEE | Vancouver | ASCE |
+|-----------|-------|---------|-------|------|-----------|------|
+| **APA 7** | — | Yes | Yes | Yes | Yes | Yes |
+| **Chicago** | Yes | — | Yes | Yes | Yes | Yes |
+| **MLA 9** | Yes | Yes | — | Yes | Yes | Yes |
+| **IEEE** | Yes | Yes | Yes | — | Yes | Yes |
+| **Vancouver** | Yes | Yes | Yes | Yes | — | Yes |
+| **ASCE** | Yes | Yes | Yes | Yes | Yes | — |
 
 ### Conversion Pipeline
 
@@ -548,7 +549,7 @@ Do not call a draft "passed peer review" unless its line is `Accepted in Round N
 ### Format Specifications Applied
 | Spec | Value |
 |------|-------|
-| Citation Style | [APA 7th / Chicago / MLA / IEEE / Vancouver] |
+| Citation Style | [APA 7th / Chicago / MLA / IEEE / Vancouver / ASCE] |
 | Target Journal | [name or "General"] |
 | Review Status | [one Review Status line; `full` mode only] |
 | Word Count | [N] words |

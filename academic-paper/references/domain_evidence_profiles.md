@@ -4,13 +4,14 @@
 
 ## Domain Evidence Profiles
 
-The ship-ready enum is exactly four values. `unknown_user_defined` is the default and the neutral fallback.
+The ship-ready enum is exactly five values. `unknown_user_defined` is the default and the neutral fallback.
 
 | Profile | Standard evidence types | Common provenance requirements | Critical gaps to surface | Reserved-note |
 |---|---|---|---|---|
 | `general_social_science` | Peer-reviewed empirical studies, mixed-methods, expert-panel / context-dependent policy analyses | Journal or proceedings; expert-panel reports acceptable where context-dependent | Single-context generalization; weak external validity | — (ship-ready) |
 | `cs_ml` | Peer-reviewed papers AND archival preprints (e.g. arXiv), conference proceedings; industry technical reports | Preprint server or proceedings acceptable; peer-review lags the field | Non-reproducible results; benchmark cherry-picking | — (ship-ready) |
 | `humanities_interpretive` | Primary sources, archival material, canonical/older texts, monographs | Primary-source provenance; recency is not a quality signal | Interpretive over-reach; missing primary-source grounding | — (ship-ready) |
+| `structural_engineering` | Peer-reviewed journals; conference proceedings (WCEE, ECEE, Eurosteel, WCTE, *fib* Congress); design codes and standards (Eurocodes, TBDY 2018, ÇYTHYE, TS 500, ACI 318, AISC 360/341, ASCE 7/41, NDS); research-centre and agency technical reports (PEER, FEMA P-695/P-58, ATC, NIST, JRC, AFAD); experimental and ground-motion databases (PEER NGA, DesignSafe, AFAD TADAS); post-earthquake reconnaissance reports (EERI, GEER); doctoral theses | Codes cited by exact edition and clause; technical reports from a named research centre or agency; datasets with a persistent identifier or a named custodian | Numerical / FE model not validated against tests; specimen count, scale and boundary-condition effects; ground-motion selection and scaling bias; code-edition or code-system mismatch (e.g. ACI design checked against Eurocode limits); unit inconsistency | — (ship-ready; civil/structural fork) |
 | `unknown_user_defined` | Neutral single-pyramid (pre-#259 behavior) — peer-reviewed default | Standard peer-review expectation | (no profile-specific loosening) | Default / neutral fallback |
 
 **Reserved profiles (documented, NOT in the enum).** Selecting one records effective `unknown_user_defined` and surfaces a reserved-fallback advisory — its checklist does not exist yet, so it falls back to neutral to prevent false rigor:

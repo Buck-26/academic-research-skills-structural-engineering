@@ -227,7 +227,7 @@ AI-assisted assessment's primary advantage lies in the immediacy of feedback, re
 | `sections` | list[Section] | Ordered paper sections |
 | `references` | list[Reference] | Full reference list with cross-referencing |
 | `total_word_count` | integer | Total word count (excluding references) |
-| `citation_format` | enum | `"APA7"` / `"Chicago"` / `"MLA"` / `"IEEE"` / `"Vancouver"` |
+| `citation_format` | enum | `"APA7"` / `"Chicago"` / `"MLA"` / `"IEEE"` / `"Vancouver"` / `"ASCE"` |
 | `structure_type` | enum | `"IMRaD"` / `"literature_review"` / `"theoretical"` / `"case_study"` / `"policy_brief"` / `"conference"` |
 
 ### Optional Fields

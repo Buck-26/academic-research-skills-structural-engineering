@@ -51,7 +51,7 @@ After reading the paper, analyze the following 6 dimensions sequentially:
 
 ### 1. Primary Discipline
 - The paper's core disciplinary affiliation
-- Examples: higher education, information science, public policy, business management, medical education
+- Examples: higher education, information science, public policy, business management, medical education, structural engineering (steel / reinforced concrete / timber), earthquake engineering, structural dynamics
 
 ### 2. Secondary Disciplines
 - Cross-disciplinary fields the paper touches on (maximum 3)
@@ -75,6 +75,11 @@ After reading the paper, analyze the following 6 dimensions sequentially:
 - Systematic Review / Scoping Review
 - Action Research
 - Comparative Study
+- Laboratory Testing (quasi-static cyclic, monotonic, shake-table, pseudo-dynamic / hybrid simulation)
+- Numerical / Finite-Element Simulation (nonlinear static or dynamic analysis)
+- Probabilistic / Reliability Analysis (fragility, risk, performance-based assessment)
+- Field Study (post-earthquake reconnaissance, structural health monitoring, ambient vibration testing)
+- Code / Design Study (code comparison, design-procedure proposal, parametric design study)
 
 ### 5. Target Journal Tier
 - When an author-confirmed #683 Review Target Context is supplied, reproduce
@@ -155,6 +160,34 @@ ids, digest, or parallel-conflict groups, and it never emits a binding receipt.
      Devil's Advocate still files an unsupported premise that it finds as an
      issue row, but that does not cover the gap in domain competence.
 
+### Civil / Structural / Earthquake Engineering Configuration (civil/structural fork)
+
+Use this library when the Primary Discipline is structural, earthquake or structural-dynamics engineering. Pick one identity per seat that matches the manuscript's material and method. These are templates. Fill in the specifics from the manuscript and keep the #1076 rule: the focus says what to check and where, never the answer. Reference for every seat: `academic-paper/references/structural_codes_and_units.md`, `academic-paper/references/structural_engineering_glossary.md`.
+
+**Reviewer 1 (Methodology), pick by method type:**
+
+| Method | Identity template | Checks to set |
+|---|---|---|
+| Laboratory testing | Experimental structural engineer who has run large-scale cyclic and shake-table programmes | Specimen count and repeats; scale and similitude; boundary conditions and test set-up; loading protocol named (FEMA 461, ATC-24, AISC 341 Ch. K, ACI 374, EN 12512); coupon tests reported; instrumentation; how failure modes were documented |
+| Numerical / FE | Computational structural mechanics specialist (OpenSees / ABAQUS / LS-DYNA) | Element, material and damping models; mesh or convergence study; whether the model is *validated* against independent tests or only *calibrated*; how sensitive the results are to modelling choices |
+| Nonlinear dynamic / seismic | Earthquake engineering analyst for performance-based assessment | Ground-motion selection and scaling (target spectrum, code clause, number of records, record IDs); hazard level and return period; collapse definition; record-to-record and modelling uncertainty |
+| Probabilistic / fragility | Structural reliability researcher | Intensity-measure choice; damage-state definitions; fitting method (MLE, IDA, MSA); epistemic vs aleatory treatment; sample size |
+| Field / SHM | Structural-dynamics and system-identification specialist | Sensor layout; sampling; signal processing; identification method (FDD, SSI); how environmental variability is treated; for reconnaissance, how buildings were sampled and which damage scale was used |
+
+**Reviewer 2 (Domain), pick by material or topic:**
+
+| Material / topic | Identity template | Checks to set |
+|---|---|---|
+| Steel / composite | Steel structures researcher (stability, connections, seismic steel systems) | Local and global stability; connection detailing; ductility and overstrength; consistency with EN 1993 / EN 1998 Ch. 6, AISC 360 / 341, ÇYTHYE; steel grade and measured vs nominal f_y |
+| Reinforced concrete | RC behaviour and seismic design researcher | Confinement and transverse reinforcement; shear and flexure–shear interaction; joint behaviour; detailing per EN 1992 / EN 1998, TS 500, TBDY 2018, ACI 318; measured concrete strength; retrofit method if any |
+| Timber | Timber engineering researcher (glulam, CLT, connections) | Strength class and moisture content; duration-of-load and k_mod; ductility of connections; consistency with EN 1995 / EN 1998 Ch. 8 or NDS; variability of the material |
+| Structural dynamics | Structural dynamics researcher | Modal properties; damping assumptions; frequency content of the excitation; SSI; whether the dynamic model reproduces the measured response |
+| Earthquake engineering / codes | Seismic code and performance-based design specialist | Code edition and clauses cited; behaviour/response factors (q vs R vs R, D) not mixed; hazard definition (AFAD TDTH, EN 1998 national annex, ASCE 7); performance levels mapped correctly between TBDY, EN 1998-3 and ASCE 41 |
+
+**Reviewer 3 (Practical / cross-disciplinary):** use a practising design engineer for constructability, design-office usability and whether the proposed design rule can be applied with code-level information, a geotechnical engineer for SSI or foundations, or a materials scientist for novel materials. One of the three peer cards gets the **unit and code-edition check**: SI units throughout, conversions shown, every code cited with its edition.
+
+**Evidence profile:** when the PCR or the manuscript shows the `structural_engineering` evidence profile, the reviewers treat proceedings, codes, agency technical reports and datasets as admissible evidence. They still check them against `structural_codes_and_units.md` § 4.
+
 ### Dynamic Configuration Examples
 
 The tables shorten each review focus to a few words. On a card, write each focus as a check with its location (#1076). Both examples are runs in which the author confirmed the journal that the Journal-Fit Reviewer names (#1080); without a confirmed target, that reviewer stays field-general.
@@ -167,6 +200,15 @@ The tables shorten each review focus to a few words. On a card, write each focus
 | R1 | Mixed methods research design expert, educational measurement background | AI effectiveness measurement, causal inference validity |
 | R2 | Higher education policy scholar, comparative education background | QA framework citation accuracy, policy context |
 | R3 | AI ethics researcher, information science background | Algorithm bias, data privacy, feasibility of technical claims |
+
+**Example 3: "Seismic Performance of RBS Steel Moment Connections Retrofitted with Welded Haunches"** (author-confirmed target: *Journal of Constructional Steel Research*)
+
+| Reviewer | Identity | Review Focus |
+|----------|----------|-------------|
+| Journal-Fit Reviewer | *Journal of Constructional Steel Research* Associate Editor, seismic steel connections expert | Novelty over prior RBS/haunch tests, journal fit |
+| R1 | Experimental structural engineer, large-scale cyclic testing of beam-to-column connections | Loading protocol (AISC 341 Ch. K), specimen count, coupon tests, FE validation vs calibration |
+| R2 | Steel structures researcher, EN 1998 Ch. 6 / AISC 358 / ÇYTHYE | Pre-qualification criteria, ductility and overstrength, code consistency |
+| R3 | Practising seismic retrofit engineer | Constructability of the field welding, cost, applicability with code-level information; SI units and code editions |
 
 **Example 2: "Impact of Declining Birth Rates on Management Strategies of Taiwan's Private Universities"** (author-confirmed target: *Studies in Higher Education*)
 

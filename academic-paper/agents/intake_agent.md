@@ -184,6 +184,7 @@ Default: IMRaD (for empirical research) or Literature Review (for synthesis topi
 | **MLA 9th** | Literature, Languages, Cultural Studies |
 | **IEEE** | Engineering, Computer Science, Technology |
 | **Vancouver** | Medicine, Biomedical Sciences, Nursing |
+| **ASCE** | Civil, Structural, Earthquake Engineering |
 
 Auto-suggest based on discipline; user can override.
 
@@ -276,12 +277,13 @@ Reference: `references/domain_evidence_profiles.md`
 
 The domain evidence profile lets the scholar tell `literature_strategist_agent` which discipline's evidence standards to screen by, so it does not apply one Western evidence-based-medicine pyramid to every field. **Advisory only** — it changes which evidence types the literature screening *admits*; it never changes the A-F grade and never blocks ship. **Scholar-confirmed only — nothing auto-activates** (you MAY *suggest* a default inferred from a deep-research handoff or the Step 1 topic interview, but the scholar must confirm).
 
-**Present the 4 ship-ready profiles as an explicit choice:**
+**Present the 5 ship-ready profiles as an explicit choice:**
 
 > "Which discipline's evidence standards should the literature screening use? This only affects which evidence *types* are admitted, never the grade.
 > - `general_social_science` — empirical + mixed-methods + policy/expert-panel evidence
 > - `cs_ml` — admits archival preprints (arXiv) and proceedings alongside peer-reviewed papers
 > - `humanities_interpretive` — admits primary/archival/canonical sources; recency is not a quality signal
+> - `structural_engineering` — admits conference proceedings, design codes, agency technical reports, test/ground-motion datasets and reconnaissance reports alongside journal papers
 > - `unknown_user_defined` — neutral single-pyramid (default; pick this if unsure)"
 
 `unknown_user_defined` is the **default** if the scholar does not pick or is unsure.
@@ -291,8 +293,8 @@ The domain evidence profile lets the scholar tell `literature_strategist_agent` 
 **Write the resolved effective value into the PCR `Domain Evidence Profile` row.** This is the single authoritative home — there is no Material Passport copy, no `selections[]` ledger, and no Schema number. (The profile is a PCR field, mirroring `Style Profile`.)
 
 **Profile-value rules (prose validation — there is NO JSON Schema file):**
-- The scholar's *request* MUST be one of the 4 ship-ready values OR one of the 5 reserved values — nothing else.
-- The stored **effective** value MUST be one of the 4 ship-ready enum values.
+- The scholar's *request* MUST be one of the 5 ship-ready values OR one of the 5 reserved values — nothing else.
+- The stored **effective** value MUST be one of the 5 ship-ready enum values.
 - **Request/effective coherence:** if the request is ship-ready, the stored effective value MUST equal it. If the request is reserved, the stored effective value MUST be `unknown_user_defined` and you MUST surface the reserved-fallback advisory. No other combination is valid (you may never silently store, e.g., a `general_social_science` request as an effective `cs_ml`).
 
 **Phase-1-fully-skipped carve-out (no placebo prompt) — narrow, explicit trigger only.** The profile's only consumer is `literature_strategist_agent` (Phase 1). The carve-out applies **only when `literature_strategist_agent` will not run at all** — i.e. the scholar explicitly skips the literature phase entirely (`academic-paper/SKILL.md:139` "User can skip Phase 1 if providing own sources"), e.g. a mid-entry start with a finished draft where no literature screening will occur. On that explicit signal, do NOT prompt; record `unknown_user_defined` + a one-line `[NO-PROFILE-NEUTRAL]` advisory ("this run skips literature screening entirely, so a domain evidence profile would have no consumer; to apply one, run Phase 1").
@@ -350,7 +352,7 @@ row should only be marked or should block finalization:
 | **Discipline** | [discipline + sub-field] |
 | **Target Journal** | [journal name or "General"] |
 | **Venue Profile** | [path to declared venue_profile YAML / absent if the Step 3 follow-up was skipped] |
-| **Citation Format** | [APA 7th / Chicago 17th / MLA 9th / IEEE / Vancouver] |
+| **Citation Format** | [APA 7th / Chicago 17th / MLA 9th / IEEE / Vancouver / ASCE] |
 | **Output Format** | [Markdown / LaTeX / DOCX / PDF / Combined] |
 | **Format Profile** | [path to declared format_profile YAML — ROW OMITTED ENTIRELY if the Step 5 follow-up was declined/skipped, per Invariant 7] |
 | **Body Language** | [EN / zh-TW / Bilingual] |

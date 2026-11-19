@@ -117,7 +117,7 @@ Activate `plan` mode when the user wants guidance, step-by-step planning, or exp
 |---------|-------------------|-----------------|
 | Primary output | Publishable paper draft | Research report |
 | Structure | Journal-ready (IMRaD, etc.) | APA 7.0 report |
-| Citation | Multi-format (APA/Chicago/MLA/IEEE/Vancouver) | APA 7.0 only |
+| Citation | Multi-format (APA/Chicago/MLA/IEEE/Vancouver/ASCE) | APA 7.0 only |
 | Abstract | Pair-dependent bilingual (default zh-TW + EN) — the two abstract languages follow the run's declared `output_language_pair` | Single language |
 | Peer review | Simulated 5-dimension review | Editorial review |
 | Output format | LaTeX/DOCX (via Pandoc)/PDF/Markdown | Markdown only |
@@ -137,7 +137,7 @@ Activate `plan` mode when the user wants guidance, step-by-step planning, or exp
 | 6 | `citation_compliance_agent` | Citation format verification, reference list completeness, DOI checking | Phase 5a |
 | 7 | `abstract_bilingual_agent` | Pair-dependent bilingual abstract (default zh-TW + EN), keyword count from the regime table in `references/abstract_writing_guide.md` | Phase 5b |
 | 8 | `peer_reviewer_agent` | Simulated double-blind review, five-perspective categorical assessment, revision suggestions (max 2 rounds) | Phase 6 |
-| 9 | `formatter_agent` | Convert to LaTeX/DOCX (via Pandoc)/PDF/Markdown, journal formatting, cover letter, citation format conversion (APA 7 / Chicago / MLA / IEEE / Vancouver) | Phase 7 |
+| 9 | `formatter_agent` | Convert to LaTeX/DOCX (via Pandoc)/PDF/Markdown, journal formatting, cover letter, citation format conversion (APA 7 / Chicago / MLA / IEEE / Vancouver / ASCE) | Phase 7 |
 | 10 | `socratic_mentor_agent` | Plan mode Socratic mentor: chapter-by-chapter guidance, convergence criteria (4 signals), question taxonomy (4 types), INSIGHT extraction | Plan Step 0-3 |
 | 11 | `visualization_agent` | Parse paper data and generate publication-quality figure code (Python matplotlib / R ggplot2) with APA 7.0 formatting, colorblind-safe palettes, and LaTeX integration | Phase 4 / Phase 7 |
 | 12 | `revision_coach_agent` | Parse unstructured reviewer comments into a Revision Roadmap, or research-ethics review comments (the protocol's Activation gate decides which) into the separate #668 source-accounted concern tracker; works standalone | Revision-Coach mode |
@@ -153,7 +153,7 @@ LaTeX (.tex + .bib), DOCX (via Pandoc), PDF (via LaTeX or Pandoc), Markdown.
 When the paper contains quantitative results, the `visualization_agent` can generate publication-ready figures in Python (matplotlib/seaborn) or R (ggplot2) with APA 7.0 formatting and colorblind-safe palettes. Figures are delivered as runnable code + LaTeX `\includegraphics` integration code. See `references/statistical_visualization_standards.md` for chart type decision trees and code templates.
 
 ### Citation Formats
-APA 7.0 (default), Chicago (Author-Date or Notes-Bibliography), MLA 9, IEEE, Vancouver. The `formatter_agent` supports late-stage citation format conversion between any two supported formats via "Convert citations to [format]".
+APA 7.0 (default), Chicago (Author-Date or Notes-Bibliography), MLA 9, IEEE, Vancouver, ASCE (author-date; civil/structural fork). The `formatter_agent` supports late-stage citation format conversion between any two supported formats via "Convert citations to [format]".
 
 ---
 
@@ -346,7 +346,7 @@ See `references/mode_selection_guide.md` for details.
 | `revision` | "Revise paper" | 8->5->6 | Patch document + deterministically applied revised draft + apply report (#390; revision log via `templates/revision_tracking_template.md`) + Citation Audit Report with proposed citation fixes (#1068) |
 | `abstract-only` | "Write abstract" | 1->7 | Bilingual abstract + keywords |
 | `lit-review` | "Literature review" | 1->2 | Annotated bibliography + synthesis |
-| `format-convert` | "Convert to LaTeX" / "Convert citations to [format]" | 9 only | Formatted document; includes citation format conversion (APA 7 / Chicago / MLA / IEEE / Vancouver) |
+| `format-convert` | "Convert to LaTeX" / "Convert citations to [format]" | 9 only | Formatted document; includes citation format conversion (APA 7 / Chicago / MLA / IEEE / Vancouver / ASCE) |
 | `citation-check` | "Check citations" | 6 only | Citation error report |
 | `plan` | "guide my paper" / "help me plan my paper" | 1->10->3->4 | Chapter Plan + INSIGHT Collection |
 | `revision-coach` | "parse reviews" / "revision roadmap" / "I got reviewer comments" / "should we push back" / "conference rebuttal" / "grant panel response" / research ethics review correspondence (the protocol's Activation gate decides) | 12 only | Peer-review path: immutable Roadmap core + explicit author sidecar + optional Tracking Template/Response Skeleton. Committee path: separate #668 concern tracker + placeholder response skeleton; no Schema 11, reviewer obligation/severity, or determination. |
@@ -473,7 +473,7 @@ Review, and put it in a separate notes line. Leave the user's excerpt or draft t
 corrected version and produce it only when the user asks. In this mode the
 agent's Auto-correct principle covers the reference list and the listed
 replacements; its Corrected Draft output belongs to `full`-mode runs that call
-it as Phase 5a, not to this mode (#1062, #1068). For Chicago 17th, MLA 9th, IEEE, and Vancouver, the agent's Other Citation Styles: Report Only rule replaces this: the report lists findings only, with no Corrected Reference List or replacement citations. A corrected version of the user's text still comes only when the user asks, and it begins with a note that a correction for another style may be wrong (#1093).
+it as Phase 5a, not to this mode (#1062, #1068). For Chicago 17th, MLA 9th, IEEE, Vancouver, and ASCE, the agent's Other Citation Styles: Report Only rule replaces this: the report lists findings only, with no Corrected Reference List or replacement citations. A corrected version of the user's text still comes only when the user asks, and it begins with a note that a correction for another style may be wrong (#1093).
 
 ---
 
@@ -568,11 +568,11 @@ See `agents/intake_agent.md` for the complete field definitions of the Phase 0 c
 
 **Agent definitions**: `agents/{agent_name}.md` — one file per agent (12 total, matching Agent Team table above).
 
-**References** (28 files in `references/`):
+**References** (30 files in `references/`):
 - Citation: `apa7_extended_guide`, `apa7_chinese_citation_guide`, `citation_format_switcher`
 - Writing: `academic_writing_style`, `writing_quality_check`, `writing_judgment_framework`
 - Structure: `paper_structure_patterns` (6 types), `abstract_writing_guide`, `intro_title_rhetoric_guide` (CARS moves + title checklist)
-- Domain: `hei_domain_glossary` (bilingual), `journal_submission_guide`, `latex_template_reference`, `domain_evidence_profiles` (advisory screening profiles)
+- Domain: `hei_domain_glossary` (bilingual), `structural_engineering_glossary` (EN/TR, civil/structural fork), `structural_codes_and_units` (codes by edition, SI units, engineering evidence checks), `journal_submission_guide`, `latex_template_reference`, `domain_evidence_profiles` (advisory screening profiles)
 - Process: `failure_paths` (12 scenarios), `mode_selection_guide` (11 modes), `plan_mode_protocol`, `workflow_phase_details`, `revision_patch_protocol` (#390 Mode B commands + marker lifecycle)
 - Ethics: `credit_authorship_guide` (CRediT 14 roles), `funding_statement_guide`, `statistical_visualization_standards`
 - Disclosure (v3.2): `disclosure_mode_protocol` (default venue applicability/status bundle: `REQUIRED`, `ACTION_ONLY`, `NOT_REQUIRED`, `UNKNOWN`, plus typed halts; separate policy-anchor rendering), `venue_disclosure_policies` (v2 database: ICLR, NeurIPS, Nature, Science, ACL, EMNLP, plus medical-publishing policy targets — ICMJE, NEJM, The Lancet, JAMA, BMJ, PLOS, Frontiers, publisher-wide Chinese Nursing Journals Publishing House 中华护理杂志社, journal-level International Eye Science 国际眼科杂志)

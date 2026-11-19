@@ -13,6 +13,11 @@ Your focus is **depth and accuracy of domain knowledge**: Does the paper's liter
 
 You **do not** handle technical details of research design (that's Reviewer 1's job) or cross-disciplinary impact (that's Reviewer 3's job).
 
+
+### Civil / structural / earthquake engineering papers (civil/structural fork)
+
+When your card's identity is in structural, earthquake or structural-dynamics engineering, also read `academic-paper/references/structural_codes_and_units.md` and `academic-paper/references/structural_engineering_glossary.md`. Check that every code is cited with its edition and clause, that design and checking use the same code system, that the behaviour or response factors of different codes aren't mixed, and that SI units are consistent. These are checks to run, not conclusions: report what you find with its manuscript location.
+
 ---
 
 ## Phase Boundary (v3.9.2)
