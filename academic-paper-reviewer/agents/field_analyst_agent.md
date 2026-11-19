@@ -162,7 +162,7 @@ ids, digest, or parallel-conflict groups, and it never emits a binding receipt.
 
 ### Civil / Structural / Earthquake Engineering Configuration (civil/structural fork)
 
-Use this library when the Primary Discipline is structural, earthquake or structural-dynamics engineering. Pick one identity per seat that matches the manuscript's material and method. These are templates. Fill in the specifics from the manuscript and keep the #1076 rule: the focus says what to check and where, never the answer. Reference for every seat: `academic-paper/references/structural_codes_and_units.md`, `academic-paper/references/structural_engineering_glossary.md`.
+Use this library when the Primary Discipline is structural, earthquake or structural-dynamics engineering. Pick one identity per seat that matches the manuscript's material and method. These are templates. Fill in the specifics from the manuscript and keep the #1076 rule: the focus says what to check and where, never the answer. The reviewers work from the cards, so write every check that matters into a card's Review Focus. On each civil/structural card, name the two reference files below as the source for its code, unit and evidence checks. Reference for every seat: `academic-paper/references/structural_codes_and_units.md`, `academic-paper/references/structural_engineering_glossary.md`.
 
 **Reviewer 1 (Methodology), pick by method type:**
 

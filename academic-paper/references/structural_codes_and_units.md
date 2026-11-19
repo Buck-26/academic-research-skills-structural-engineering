@@ -1,6 +1,6 @@
 # Structural Codes, Standards and Units
 
-> **Civil/structural fork addition.** Used by `intake_agent` (Step 3 codes), `draft_writer_agent`, `citation_compliance_agent`, `formatter_agent` and by the reviewer panel (`field_analyst_agent` civil/structural configuration). It's advisory: it tells the writer and the reviewers what to check. It never asserts that a clause says something. Clause text must come from the code document the author supplies or cites.
+> **Civil/structural fork addition.** The civil/structural reviewer cards in `field_analyst_agent` name it, and `academic-paper/SKILL.md` lists it among the references for writing. It's advisory: it tells the writer and the reviewers what to check. It never asserts that a clause says something. Clause text must come from the code document the author supplies or cites.
 
 ## 1. Code registry (cite by edition and clause)
 

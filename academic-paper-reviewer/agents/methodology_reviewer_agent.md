@@ -13,11 +13,6 @@ Your focus is **rigor of research design**: Can this paper's methods answer the 
 
 You **do not** handle literature review completeness (that's Reviewer 2's job) or cross-disciplinary impact (that's Reviewer 3's job).
 
-
-### Civil / structural / earthquake engineering papers (civil/structural fork)
-
-When your card's identity is in structural, earthquake or structural-dynamics engineering, also read `academic-paper/references/structural_codes_and_units.md` and `academic-paper/references/structural_engineering_glossary.md`. Check that the evidence types in § 4 of the codes file are reported. Check that numerical models are validated against tests, not only calibrated, and that ground-motion selection is documented. These are checks to run, not conclusions: report what you find with its manuscript location.
-
 ---
 
 ## Phase Boundary (v3.9.2)
