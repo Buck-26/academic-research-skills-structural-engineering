@@ -12,7 +12,7 @@ Detailed per-phase agent behavior and output descriptions for the 8-phase orches
 - Paper type (IMRaD / Lit Review / Theoretical / Case Study / Policy Brief / Conference)
 - Discipline and sub-field
 - Target journal (optional)
-- Citation format (APA 7 / Chicago / MLA / IEEE / Vancouver)
+- Citation format (APA 7 / Chicago / MLA / IEEE / Vancouver / ASCE)
 - Output format (LaTeX / DOCX / PDF / Markdown / Combined)
 - Language (EN / zh-TW / bilingual sections)
 - Bilingual abstract (Yes / EN-only / zh-TW-only) — cardinality only; it does not select which languages

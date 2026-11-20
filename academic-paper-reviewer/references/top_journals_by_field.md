@@ -103,6 +103,30 @@ This document is used by `field_analyst_agent` and `eic_agent` as a reference fo
 | *International Journal of Engineering Education* | TEMPUS | 1-3 | International engineering education journal |
 | *European Journal of Engineering Education* | Taylor & Francis | 2-4 | European engineering education |
 
+### 5a. Structural, Earthquake and Structural-Dynamics Engineering (civil/structural fork)
+
+Impact factors aren't listed here because they change every year. Check the current JCR / Scopus CiteScore before quoting one. Use this list only to calibrate the Journal-Fit Reviewer once the author has confirmed a target. It never selects a target (#1080).
+
+| Journal | Publisher | Impact Factor Range | Typical Review Preferences |
+|---------|----------|-------------------|---------------------------|
+| *Journal of Structural Engineering* | ASCE | check JCR | Experimental + analytical work tied to design practice; ASCE author-date style; code relevance |
+| *Engineering Structures* | Elsevier | check JCR | Broad structural scope; expects validated numerical models and clear novelty over prior tests |
+| *Earthquake Engineering & Structural Dynamics* | Wiley | check JCR | Rigorous dynamics/seismic methodology; ground-motion selection, uncertainty, generality of findings |
+| *Earthquake Spectra* | SAGE / EERI | check JCR | Seismic hazard, risk, performance-based design, reconnaissance; practice relevance |
+| *Bulletin of Earthquake Engineering* | Springer | check JCR | European seismic codes (EN 1998), assessment of existing buildings, field data |
+| *Journal of Earthquake Engineering* | Taylor & Francis | check JCR | Seismic response, assessment and retrofit; experimental and numerical |
+| *Soil Dynamics and Earthquake Engineering* | Elsevier | check JCR | Ground motion, SSI, geotechnical–structural interaction |
+| *Journal of Constructional Steel Research* | Elsevier | check JCR | Steel/composite members and connections; test + FE validation; EN 1993 / AISC comparisons |
+| *Thin-Walled Structures* | Elsevier | check JCR | Cold-formed / thin-walled steel, stability, buckling |
+| *ACI Structural Journal* | ACI | check JCR | RC design and behaviour; ACI 318 relevance |
+| *Structural Concrete* | *fib* / Wiley | check JCR | RC and prestressed concrete; Eurocode 2 / *fib* Model Code |
+| *Construction and Building Materials* | Elsevier | check JCR | Materials (concrete, steel, timber, composites); test programmes |
+| *European Journal of Wood and Wood Products* | Springer | check JCR | Timber material and timber engineering |
+| *Structures* | IStructE / Elsevier | check JCR | Broad structural engineering; applied and numerical studies; clear practical contribution |
+| *Journal of Building Engineering* | Elsevier | check JCR | Applied building engineering |
+| *Structural Control and Health Monitoring* | Wiley | check JCR | SHM, vibration control, system identification |
+| *Teknik Dergi* | İMO (Chamber of Civil Engineers, Türkiye) | check JCR | Turkish civil engineering research; TBDY / TS 500 practice; bilingual abstract |
+
 ---
 
 ## 6. Medicine & Health Sciences

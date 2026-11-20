@@ -19,7 +19,7 @@ PROFILES = REPO_ROOT / "academic-paper" / "references" / "domain_evidence_profil
 CONSUMER = REPO_ROOT / "academic-paper" / "agents" / "literature_strategist_agent.md"
 SQH = REPO_ROOT / "deep-research" / "references" / "source_quality_hierarchy.md"
 
-SHIP_ENUM = ("general_social_science", "cs_ml", "humanities_interpretive", "unknown_user_defined")
+SHIP_ENUM = ("general_social_science", "cs_ml", "humanities_interpretive", "structural_engineering", "unknown_user_defined")
 RESERVED = ("clinical", "wet_lab", "materials_physics", "legal_case_based", "education")
 
 INTAKE_STEP12_HEADING = "### Step 12: Domain Evidence Profile"
@@ -117,7 +117,7 @@ def check_c1() -> list[str]:
 
 def check_c2() -> list[str]:
     """profiles doc: exists, gaps column wording, reserved list, and a
-    CLOSED-SET 4-profile table (exactly the 4 SHIP_ENUM rows — no 5th effective
+    CLOSED-SET 5-profile table (exactly the 5 SHIP_ENUM rows — no 6th effective
     profile, no reserved value smuggled in as an effective row)."""
     f: list[str] = []
     t = _read(PROFILES)
@@ -141,8 +141,8 @@ def check_c2() -> list[str]:
     # earlier "only record backticked first cells" version had a false-pass: a
     # 5th effective row written WITHOUT backticks (`| clinical | ... |`) was
     # silently skipped, leaving got == SHIP_ENUM. Now every pipe data row counts,
-    # and a first cell that is not exactly one of the four backticked SHIP_ENUM
-    # values FAILS. The set must equal exactly the 4 SHIP_ENUM values, with no
+    # and a first cell that is not exactly one of the five backticked SHIP_ENUM
+    # values FAILS. The set must equal exactly the 5 SHIP_ENUM values, with no
     # duplicates.
     sec = _heading_range(t, "## Domain Evidence Profiles")
     if sec is None:
@@ -163,7 +163,7 @@ def check_c2() -> list[str]:
         if first not in valid_first:
             f.append(
                 f"C2: profile table data row has an invalid first cell {first!r} "
-                f"(must be exactly one of {sorted(valid_first)} — no 5th effective "
+                f"(must be exactly one of {sorted(valid_first)} — no 6th effective "
                 f"profile, no un-backticked or reserved value smuggled in)"
             )
             continue
@@ -172,7 +172,7 @@ def check_c2() -> list[str]:
     want = set(SHIP_ENUM)
     if got != want:
         f.append(
-            f"C2: profile table is not the closed 4-row SHIP_ENUM set "
+            f"C2: profile table is not the closed 5-row SHIP_ENUM set "
             f"(extra={sorted(got - want)}, missing={sorted(want - got)})"
         )
     if len(row_tokens) != len(set(row_tokens)):
@@ -200,7 +200,7 @@ def check_c3() -> list[str]:
         if tag not in block:
             f.append(f"C3: resolution block missing consumer tag '{tag}'")
     # graceful-fallback cases
-    for kw in ("absent", "unknown_user_defined", "not in the 4 enum"):
+    for kw in ("absent", "unknown_user_defined", "not in the 5 enum"):
         if kw not in block:
             f.append(f"C3: resolution block missing fallback keyword '{kw}'")
     # Universal-gate carve-out language must be in PROSE, not only the pseudocode.
